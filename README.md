@@ -1,1 +1,1 @@
-# assertj-interface
+# assertj-extension
