@@ -14,3 +14,6 @@ after_success:
 - gpg2 --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring --batch --import deployment/signingkey.asc
 - mvn clean deploy --settings .maven.xml -Prelease -Dgpg.executable=gpg2 -Dgpg.keyname=E137DC17A85F039B
   -Dgpg.passphrase=$PASSPHRASE -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg -Dgpg.secretKeyring=$TRAVIS_BUILD_DIR/secring.gpg
+cache:
+  directories:
+  - $HOME/.m2
