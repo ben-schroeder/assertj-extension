@@ -4,46 +4,48 @@ dist: bionic
 
 env:
   global:
-  - secure: WeegK5o6pUCc0bsEWq+/3AAnJZbEsMrBnarwAsqoetTZ8h9Jzc702DQ3t1OwNQX+Y7HfhWwu7kZFM7JsuVIbsi//sSnP+jAsUL9yYVq96vBjuYbDPyxkrIrT6T+22z1ySf7n5SjYmhIr6yLO+kfuLqq7FsywZPXtQMtmBmesbIMnschyQuCwQ+aKVtWpLLSndaLF6ytePh6KZh63yfYL5DTx6fK+VoeKWDLbfiL9APFmvcEKInIdPqv18u8JtcASiC0G0HeqQ7vzeLKXm+JfY+nWjlQc6U0oSpD6Vv7gFIsNHi/nhR7YpMaXFzTtRG2lpSYInzK3yGLVfLc51MWsGypcTOGuNXMKf/Gxks+lIY314ilrwS9s4Sfo6tIHOMEVK7Zxz0oHri/qNSsbIjX7CV7Aca3Ygti7OlOWRWlCMZrmwU4L5jPTveNDzSGcwfYpSGxEfTfhpMRyG5dFNYqOzHdDQYuts/1L0UTJYWhwZhja61nl1OK8Yuhg/mFgO7AzhfarKKpeggM8K0KpW4jBKI+qYXM3nbAdNyo1hc+JAZrrew7u30blFzMVdVcmGuH6549k/+kfx9i+ig2t8bvk4rJke/TqA/SQGc4qfPJraOCqF5S/nXedqQGFsy+kTE1zALEYzK+qxj8fSa+YYpBXg0EOdqIrOpltHOvdLBUbPHQ=
-  - secure: D3BXjRUC2EAu3W9FR4U6CSZ2KJ2wANiN3fuPePBpJCsicgDU/yZYyKRCCtdrLK/2wkSUUCiFvpIT9Sgxpw6u736blpXP656486fAke9j1NWnxUoIJRCyC+EJXH1KjF1TTuTYHuIOMNFYSa/Qq6GBVRJN0B9MsOlSNtsroEoVm0N8LX0YaKlqNm6/OJ19nmbol2f0aYzKCjeQKlyARYct4M8fhGbGvXptoPH0JTpUUT9lZlj14hM2Xo+Y9MEzImNa9M7IfMJZy58F9VeNY5j98L7peGDCzZU7D9CDYQCxntwBzLTUQYT/BPuoRy2MY6AhtIif16s17IF3mAU5S7apGTa3sIk9A79ZQQWwNXV6xFgGt83T0WxoT8fS7rXscprNpY+SYzZmlYzf3n+eniqYmaxrZbwMzq3RmqID6pcN28zVcwqfnKmTmMKJtbSl5QX01uZxcBa+e/Yjw9/8LMESjgq8y4e0/agD76czMJQcaDn4uDfT2+HlDPPezoz7CxB2V69EdeZT3ac5zubN2OBGJ8SDvyK1D8Gy5jNvNFNXrijU81yPAnp1KpXnWtKVqZYdemjJAuRCimSovx9u3RTBtqG2iUKfeq++EV60kXTAW1hckDyMNeI3Do5DblgdKVnowOZS8RdCo1qQW/N/0x3wy/7Twc3hl4y7viry1RDwB5c=
-  - secure: LGsIBUb7L/xUjjGpzY5BPqhBwJ1/pDMLU/UeXoFL/VRdxKryMOl7nsKVj8N5L4Kv+v9hOro013zcfFS3Vodgl4QDAJhott8DGRepZcUYrP4tgMNf54oaXq1h+RZw35fZgGwpMfTEyUFnsak+Zc5iHolrTRENR7xQ+YmE5xMlsbsJEdcEFF4SPs/f0mz3w2VXCVDQmcLCO+eMApMb0pUm8escEpjYzRkWyzLRTXqSzSTzbVIzcz7ZTzbWu5uDgn0TfyTFz84bx667zBKdOhdIHECQ//aa42KVdAAK03NtxIKGCYW807kYyIyB3W0n92AVzMVt4GhYM0BVLZuzoRdgoca7FCWWoGUyhNcQH3ORn4jGUmNSc4dE7+reBNEn30qnY82iJFEtZAiHb9XCfraGbZDvb3LUI5ijPIobi0Dl4QLe/LDUD4Zrlj9Hji5MqUJaOBMzkxO7QPoEQeH9NN2UkvELk68/6s9/GloMvReShx1QeMyo0/VvrAY6TI/IwqHOvM/veepphYg8Uks/XnwSvtWNnKCljignABgkGfbuLQnKz7AuWaEnQmCNNxqoGn1H48gIsYzyajUwLsD23/FrVeoJAtPnzmLX7obYtJlDPVkfh2W7fg22rOiLrAVmQobBl9+iBCuy8QBT3VZ/P9Hunm+PEcdoQpTYHuVN8tM25aA=
+  - secure: H9S2J6MaG8n0cdn86j9lgueyCp/8xjwCv+mSmtrpCmyBv/wAxPn08jGFcKz3FheyEgQNbPBEfkIZB6NYRVHhL+I217P3Af9s0LnfCN+6j25w22lt+PDdxQ8c/ommhN6Bubh+Q1j2XlBLBZcE5OKYTPeSKB8JvxBE9DnUDbPirR8Hli28JkjHsVuvtGhC13dwYYeiBWM6LsIfr8bOzS+JkB3agPXnIaqN4rqlTu8JdW5kjGBBhvaYMsCEnwy0sTxyf/OqXAWb/yrWxzujiNtAZ1ARXOlJZKFLE0451wjn89Zb3z/mCghq/badnyhRBVm2QExtJYuBF3ZS0eL5L3UYazLh2M19dJ5zVgdgfFpU55tNIfhQt9mST7OCSdTyQaaztxC/EKCF28Rbopf0XuGJLy74Rq7zGByBhSNO17Uwue6PlSIWV6dIX8hgc1NzqVfDRR6rYLM36io6sJV2n7TZLKSxnSCPVuuGvvJ39qG+zlIjWbAUVjuYX6T3itMkSsdTBMBi8XW6rUMgwdNSbOjDPm0QcvSJyfdre88OyB9FJoXmQKkjcuPJSP5vo96vaYtPrpTPmVqXzY9SAyCl3Xg9mmUx7SRPk8eob7ifJH/JnDUamphn0Gotk6bg9mAP6hZepPFh6y+1WzwcfpiMk4R2RGcfeYNAfjWeaf7I7i24xBI=
+  - secure: bRfobs54cs3A+aPxZetRwAEYcrdW6kPfl5yoCzVEdKflpJGwU3i87la/CWvOMJaFq0AocXjaPnCxxUz37dKhwq/OMXHqnxsin5OXVPrH3kUW5ssuzWjSes2uKxbRbsKWTw6ik7R5Tbkf+oTejENhDG/8jiGlj2kPSNBGPB4GnyXZwa3kRaHxClqCgtwd+YJ+Ht2YBksalYt6rg2tFcR/cw/eH6i5KLYz/Va7nzTyo68zQCc7VMndF5cdi8kOf0zJHK4sQQtNnVoJxESUTEI7sTfM19VcuCg4lakKy5g/9o1hXJWMnis0p+PlbicMCKxo5Oeki5VeAD5viwOIc/D7Eu4ergll5QlgKcxyFbdvs6mBeRMOH4Cn33jj5UnV0KwS7htXRRuHyle52lWij3Bf90O+tY0roVhIQWVeX3OydfPw/nCR90sNlzgpkvCNL1ntXGvxeXiqmUsWXNRAa0WCr99KEb0cCMLnzodF76g/gGznT23xSJl2pRIWq+rJSne27+Icju3cC9xTANcX/QSgvX6NO5nYQY67sfwpqGsvHLkLOMA9upLd9J8r/6tguV7WPCiz1/Oc0hD0Nny2gGYkSrVqHofENiVtgPnLGn1WR8vTyFUjCf78GM/PFS43U7YoVxc7PWq3/WszsBu6INgRPLoX4oRl3dSWbL90tLUY94c=
+  - secure: ny1AiR113wFvIomMJffwa1hpvaAuDJOu/8IpZYEOLdRwiq1BBUbUq1aUJhBIwpIou1FHPiIONNxO/oEkl8nnjCS8qrQfRVzHzk5YFcCarkJTQO3VGaXzjHNyeeYibJtyghS2z7zJL9naK00kLV7L7S4XoXzwo97axgGhcKzyuExVykSz/Jvvr39Hm7izH5SuFdDw25/ltZd3yhEnwFNiZW1Sudurnam6bo95PE+iZQRP3k078LgAwQTkaPibJwbttBQxYPjMq3tawShugkGx95hgD0Z8ig2/iO0R0kD0lWYAZ0syDW5xB1tbPYRYmpb4yzJ5dBq5I/4PoZtveD44jbhUIFmIpCs314ZCGxNwCd/YuruFS9G4eNM3/DKcE+oNPyRmqWwCAaTbUt8z2URkub8EKm8u/e+ltc/PkwwDG4eJilBWQhqH4Cs5Ht6cDh+AuGvM+qSfFo3limPNPKedcBDESc0SSI5RILkPCF7FUAWUVWkyBn2+SjfHv9z1HZ4ivt156oVl+HSJA2fmd4tm2C9VCwy2YgfIZqCAd9wmWypIFEJLrgGAuN7wRcCHyEkh96r2oRGMptHTOQiccUw+fk2w/qsZ+vusuYNCCqFoeYsCmv/bEnqy0dX/vwCmatSp7s1p36P6EM+LCZ6EfOW3ipukKJ3f9IzgSEtt2X82Efo=
 
 cache:
   directories:
-  - $HOME/.m2
+  - "$HOME/.m2"
 
 jobs:
   include:
-    - stage: build only
-      if: branch != master AND tag IS blank
-      before_install:
-      - mvn clean dependency:go-offline --settings .maven.xml
-      install:
-      - mvn install --settings .maven.xml
-    - stage: build AND use tag version AND deploy release
-      if: tag IS present
-      before_script:
-      - mvn clean dependency:go-offline --settings .maven.xml
-      - mvn org.codehaus.mojo:versions-maven-plugin:2.7:set -DgenerateBackupPoms=false -DnewVersion=$TRAVIS_TAG
-        --settings .maven.xml
-      - openssl aes-256-cbc -K $encrypted_f507266695bd_key -iv $encrypted_f507266695bd_iv
-        -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
-      - gpg2 --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --batch --import deployment/signingkey.asc
-      - gpg2 --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring --batch
-        --import deployment/signingkey.asc
-      script:
-      - mvn deploy --settings .maven.xml -Prelease -Dgpg.executable=gpg2 -Dgpg.keyname=E137DC17A85F039B
-        -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg -Dgpg.secretKeyring=$TRAVIS_BUILD_DIR/secring.gpg
-        -Dgpg.passphrase=$PASSPHRASE
-    - stage: build AND deploy snapshot
-      if: branch = master
-      before_script:
-      - openssl aes-256-cbc -K $encrypted_f507266695bd_key -iv $encrypted_f507266695bd_iv
-        -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
-      - gpg2 --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --batch --import deployment/signingkey.asc
-      - gpg2 --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring --batch
-        --import deployment/signingkey.asc
-      script:
-      - mvn deploy --settings .maven.xml -Prelease -Dgpg.executable=gpg2 -Dgpg.keyname=E137DC17A85F039B
-        -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg -Dgpg.secretKeyring=$TRAVIS_BUILD_DIR/secring.gpg
-        -Dgpg.passphrase=$PASSPHRASE
+  - stage: build only
+    if: branch != master AND tag IS blank
+    before_install:
+    - mvn clean dependency:go-offline --settings .maven.xml
+    install:
+    - mvn install --settings .maven.xml
+  - stage: build AND use tag version AND deploy release
+    if: tag IS present
+    before_script:
+    - mvn clean dependency:go-offline --settings .maven.xml
+    - mvn org.codehaus.mojo:versions-maven-plugin:2.7:set -DgenerateBackupPoms=false
+      -DnewVersion=$TRAVIS_TAG --settings .maven.xml
+    - openssl aes-256-cbc -K $encrypted_f507266695bd_key -iv $encrypted_f507266695bd_iv
+      -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
+    - gpg2 --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --batch --import
+      deployment/signingkey.asc
+    - gpg2 --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring
+      --batch --import deployment/signingkey.asc
+    script:
+    - mvn deploy --settings .maven.xml -Prelease -Dgpg.executable=gpg2 -Dgpg.keyname=E137DC17A85F039B
+      -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg -Dgpg.secretKeyring=$TRAVIS_BUILD_DIR/secring.gpg
+      -Dgpg.passphrase=$PASSPHRASE
+  - stage: build AND deploy snapshot
+    if: branch = master
+    before_script:
+    - openssl aes-256-cbc -K $encrypted_f507266695bd_key -iv $encrypted_f507266695bd_iv
+      -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
+    - gpg2 --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --batch --import
+      deployment/signingkey.asc
+    - gpg2 --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring
+      --batch --import deployment/signingkey.asc
+    script:
+    - mvn deploy --settings .maven.xml -Prelease -Dgpg.executable=gpg2 -Dgpg.keyname=E137DC17A85F039B
+      -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg -Dgpg.secretKeyring=$TRAVIS_BUILD_DIR/secring.gpg
+      -Dgpg.passphrase=$PASSPHRASE
