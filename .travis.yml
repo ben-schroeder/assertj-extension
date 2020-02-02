@@ -14,17 +14,29 @@ cache:
 
 jobs:
   include:
-    - stage: build
+    - stage: build only
+      if: branch != master AND tag IS blank
+      before_install:
+      - mvn clean dependency:go-offline --settings .maven.xml
+      install:
+      - mvn install --settings .maven.xml
+    - stage: build AND use tag version AND deploy release
+      if: tag IS present
       before_script:
       - mvn clean dependency:go-offline --settings .maven.xml
-      script:
-      - mvn install --settings .maven.xml
-    - stage: use tag version
-      if: tag IS present
-      script:
       - mvn org.codehaus.mojo:versions-maven-plugin:2.7:set -DgenerateBackupPoms=false -DnewVersion=$TRAVIS_TAG
-    - stage: sign and deploy
-      if: branch = master OR tag IS present
+        --settings .maven.xml
+      - openssl aes-256-cbc -K $encrypted_f507266695bd_key -iv $encrypted_f507266695bd_iv
+        -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
+      - gpg2 --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --batch --import deployment/signingkey.asc
+      - gpg2 --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring --batch
+        --import deployment/signingkey.asc
+      script:
+      - mvn deploy --settings .maven.xml -Prelease -Dgpg.executable=gpg2 -Dgpg.keyname=E137DC17A85F039B
+        -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg -Dgpg.secretKeyring=$TRAVIS_BUILD_DIR/secring.gpg
+        -Dgpg.passphrase=$PASSPHRASE
+    - stage: build AND deploy snapshot
+      if: branch = master
       before_script:
       - openssl aes-256-cbc -K $encrypted_f507266695bd_key -iv $encrypted_f507266695bd_iv
         -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
