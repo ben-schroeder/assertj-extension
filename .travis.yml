@@ -19,8 +19,12 @@ jobs:
       - mvn clean dependency:go-offline --settings .maven.xml
       script:
       - mvn install --settings .maven.xml
+    - stage: use tag version
+      if: tag IS present
+      script:
+      - mvn org.codehaus.mojo:versions-maven-plugin:2.7:set -DgenerateBackupPoms=false -DnewVersion=$TRAVIS_TAG
     - stage: sign and deploy
-      if: branch = develop OR (branch = master AND tag IS present)
+      if: branch = master OR tag IS present
       before_script:
       - openssl aes-256-cbc -K $encrypted_f507266695bd_key -iv $encrypted_f507266695bd_iv
         -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
