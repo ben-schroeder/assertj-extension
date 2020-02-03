@@ -1,6 +1,7 @@
 # assertj-extension
 [![Build Status](https://travis-ci.com/ben-schroeder/assertj-extension.svg?branch=master)](https://travis-ci.com/ben-schroeder/assertj-extension)
 [![License](https://img.shields.io/github/license/ben-schroeder/assertj-extension)](https://raw.githubusercontent.com/ben-schroeder/assertj-extension/develop/LICENSE)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/eu.benschroeder/assertj-extension/badge.svg)](https://maven-badges.herokuapp.com/maven-central/eu.benschroeder/assertj-extension)
 
 Extension to use assertj without static imports. 
 
