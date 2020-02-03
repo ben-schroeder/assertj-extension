@@ -14,6 +14,7 @@ import org.assertj.core.api.AbstractComparableAssert;
 import org.assertj.core.api.AbstractDateAssert;
 import org.assertj.core.api.AbstractDoubleArrayAssert;
 import org.assertj.core.api.AbstractDoubleAssert;
+import org.assertj.core.api.AbstractDurationAssert;
 import org.assertj.core.api.AbstractFileAssert;
 import org.assertj.core.api.AbstractFloatArrayAssert;
 import org.assertj.core.api.AbstractFloatAssert;
@@ -75,15 +76,18 @@ import org.assertj.core.api.OptionalLongAssert;
 import org.assertj.core.api.PredicateAssert;
 import org.assertj.core.api.SpliteratorAssert;
 import org.assertj.core.api.ThrowableAssert;
+import org.assertj.core.api.ThrowableTypeAssert;
 import org.assertj.core.util.CanIgnoreReturnValue;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.URI;
 import java.net.URL;
 import java.nio.file.Path;
+import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -133,645 +137,688 @@ import java.util.stream.Stream;
  */
 public interface WithBDDAssertionsForMockito {
 
-  /**
-   * @see BDDAssertions#then(Predicate)
-   */
-  default <T> PredicateAssert<T> thenAssert(Predicate<T> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(IntPredicate)
-   */
-  default IntPredicateAssert thenAssert(IntPredicate actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(LongPredicate)
-   */
-  default LongPredicateAssert thenAssert(LongPredicate actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(DoublePredicate)
-   */
-  default DoublePredicateAssert thenAssert(DoublePredicate actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Optional)
-   */
-  default <VALUE> OptionalAssert<VALUE> thenAssert(Optional<VALUE> optional) {
-    return BDDAssertions.then(optional);
-  }
-
-  /**
-   * @see BDDAssertions#then(OptionalInt)
-   */
-  default OptionalIntAssert thenAssert(OptionalInt optional) {
-    return BDDAssertions.then(optional);
-  }
-
-  /**
-   * @see BDDAssertions#then(OptionalLong)
-   */
-  default OptionalLongAssert thenAssert(OptionalLong optional) {
-    return BDDAssertions.then(optional);
-  }
-
-  /**
-   * @see BDDAssertions#then(OptionalDouble)
-   */
-  default OptionalDoubleAssert thenAssert(OptionalDouble optional) {
-    return BDDAssertions.then(optional);
-  }
-
-  /**
-   * @see BDDAssertions#then(BigDecimal)
-   */
-  default AbstractBigDecimalAssert<?> thenAssert(BigDecimal actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(BigInteger)
-   */
-  default AbstractBigIntegerAssert<?> thenAssert(BigInteger actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(boolean)
-   */
-  default AbstractBooleanAssert<?> thenAssert(boolean actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Boolean)
-   */
-  default AbstractBooleanAssert<?> thenAssert(Boolean actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(boolean[])
-   */
-  default AbstractBooleanArrayAssert<?> thenAssert(boolean[] actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(byte)
-   */
-  default AbstractByteAssert<?> thenAssert(byte actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Byte)
-   */
-  default AbstractByteAssert<?> thenAssert(Byte actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(byte[])
-   */
-  default AbstractByteArrayAssert<?> thenAssert(byte[] actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(char)
-   */
-  default AbstractCharacterAssert<?> thenAssert(char actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(char[])
-   */
-  default AbstractCharArrayAssert<?> thenAssert(char[] actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Character)
-   */
-  default AbstractCharacterAssert<?> thenAssert(Character actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Class)
-   */
-  default ClassAssert thenAssert(Class<?> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(T)
-   */
-  default <T extends Comparable<? super T>> AbstractComparableAssert<?, T> thenAssert(T actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Iterable)
-   */
-  default <T> IterableAssert<T> thenAssert(Iterable<? extends T> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Iterator)
-   */
-  default <T> IteratorAssert<T> thenAssert(Iterator<? extends T> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Iterable, AssertFactory)
-   */
-  default <ACTUAL extends Iterable<? extends ELEMENT>, ELEMENT, ELEMENT_ASSERT extends AbstractAssert<ELEMENT_ASSERT, ELEMENT>>
-  FactoryBasedNavigableIterableAssert<?, ACTUAL, ELEMENT, ELEMENT_ASSERT> thenAssert(Iterable<? extends ELEMENT> actual,
-                                                                                     AssertFactory<ELEMENT, ELEMENT_ASSERT> assertFactory) {
-    return BDDAssertions.then(actual, assertFactory);
-  }
-
-  /**
-   * @see BDDAssertions#then(ACTUAL, Class)
-   */
-  default <ACTUAL extends Iterable<? extends ELEMENT>, ELEMENT, ELEMENT_ASSERT extends AbstractAssert<ELEMENT_ASSERT, ELEMENT>>
-  ClassBasedNavigableIterableAssert<?, ACTUAL, ELEMENT, ELEMENT_ASSERT> thenAssert(ACTUAL actual,
-                                                                                   Class<ELEMENT_ASSERT> assertClass) {
-    return BDDAssertions.then(actual, assertClass);
-  }
-
-  /**
-   * @see BDDAssertions#then(List, AssertFactory)
-   */
-  default <ACTUAL extends List<? extends ELEMENT>, ELEMENT, ELEMENT_ASSERT extends AbstractAssert<ELEMENT_ASSERT, ELEMENT>>
-  FactoryBasedNavigableListAssert<?, ACTUAL, ELEMENT, ELEMENT_ASSERT> thenAssert(List<? extends ELEMENT> actual,
-                                                                                 AssertFactory<ELEMENT, ELEMENT_ASSERT> assertFactory) {
-    return BDDAssertions.then(actual, assertFactory);
-  }
-
-  /**
-   * @see BDDAssertions#then(List, Class)
-   */
-  default <ELEMENT, ACTUAL extends List<? extends ELEMENT>, ELEMENT_ASSERT extends AbstractAssert<ELEMENT_ASSERT, ELEMENT>>
-  ClassBasedNavigableListAssert<?, ACTUAL, ELEMENT, ELEMENT_ASSERT> thenAssert(List<? extends ELEMENT> actual,
-                                                                               Class<ELEMENT_ASSERT> assertClass) {
-    return BDDAssertions.then(actual, assertClass);
-  }
-
-  /**
-   * @see BDDAssertions#then(double)
-   */
-  default AbstractDoubleAssert<?> thenAssert(double actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Double)
-   */
-  default AbstractDoubleAssert<?> thenAssert(Double actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(double[])
-   */
-  default AbstractDoubleArrayAssert<?> thenAssert(double[] actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(File)
-   */
-  default AbstractFileAssert<?> thenAssert(File actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Path)
-   */
-  default AbstractPathAssert<?> thenAssert(Path actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Future)
-   */
-  default <RESULT> FutureAssert<RESULT> thenAssert(Future<RESULT> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(InputStream)
-   */
-  default AbstractInputStreamAssert<?, ? extends InputStream> thenAssert(InputStream actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(float)
-   */
-  default AbstractFloatAssert<?> thenAssert(float actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Float)
-   */
-  default AbstractFloatAssert<?> thenAssert(Float actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(float[])
-   */
-  default AbstractFloatArrayAssert<?> thenAssert(float[] actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(int)
-   */
-  default AbstractIntegerAssert<?> thenAssert(int actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(int[])
-   */
-  default AbstractIntArrayAssert<?> thenAssert(int[] actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Integer)
-   */
-  default AbstractIntegerAssert<?> thenAssert(Integer actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(List)
-   */
-  default <T> ListAssert<T> thenAssert(List<? extends T> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(long)
-   */
-  default AbstractLongAssert<?> thenAssert(long actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Long)
-   */
-  default AbstractLongAssert<?> thenAssert(Long actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(long[])
-   */
-  default AbstractLongArrayAssert<?> thenAssert(long[] actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(T)
-   */
-  default <T> ObjectAssert<T> thenAssert(T actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(T[])
-   */
-  default <T> ObjectArrayAssert<T> thenAssert(T[] actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Map)
-   */
-  default <K, V> MapAssert<K, V> thenAssert(Map<K, V> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(short)
-   */
-  default AbstractShortAssert<?> thenAssert(short actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Short)
-   */
-  default AbstractShortAssert<?> thenAssert(Short actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(short[])
-   */
-  default AbstractShortArrayAssert<?> thenAssert(short[] actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(CharSequence)
-   */
-  default AbstractCharSequenceAssert<?, ? extends CharSequence> thenAssert(CharSequence actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(StringBuilder)
-   */
-  default AbstractCharSequenceAssert<?, ? extends CharSequence> thenAssert(StringBuilder actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(StringBuffer)
-   */
-  default AbstractCharSequenceAssert<?, ? extends CharSequence> thenAssert(StringBuffer actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(String)
-   */
-  default AbstractStringAssert<?> thenAssert(String actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Date)
-   */
-  default AbstractDateAssert<?> thenAssert(Date actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(AtomicBoolean)
-   */
-  default AtomicBooleanAssert thenAssert(AtomicBoolean actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(AtomicInteger)
-   */
-  default AtomicIntegerAssert thenAssert(AtomicInteger actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(AtomicIntegerArray)
-   */
-  default AtomicIntegerArrayAssert thenAssert(AtomicIntegerArray actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(AtomicIntegerFieldUpdater)
-   */
-  default <OBJECT> AtomicIntegerFieldUpdaterAssert<OBJECT> thenAssert(AtomicIntegerFieldUpdater<OBJECT> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(AtomicLong)
-   */
-  default AtomicLongAssert thenAssert(AtomicLong actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(AtomicLongArray)
-   */
-  default AtomicLongArrayAssert thenAssert(AtomicLongArray actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(AtomicLongFieldUpdater)
-   */
-  default <OBJECT> AtomicLongFieldUpdaterAssert<OBJECT> thenAssert(AtomicLongFieldUpdater<OBJECT> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(AtomicReference)
-   */
-  default <VALUE> AtomicReferenceAssert<VALUE> thenAssert(AtomicReference<VALUE> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(AtomicReferenceArray)
-   */
-  default <ELEMENT> AtomicReferenceArrayAssert<ELEMENT> thenAssert(AtomicReferenceArray<ELEMENT> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(AtomicReferenceFieldUpdater)
-   */
-  default <FIELD, OBJECT> AtomicReferenceFieldUpdaterAssert<FIELD, OBJECT> thenAssert(AtomicReferenceFieldUpdater<OBJECT, FIELD> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(AtomicMarkableReference)
-   */
-  default <VALUE> AtomicMarkableReferenceAssert<VALUE> thenAssert(AtomicMarkableReference<VALUE> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(AtomicStampedReference)
-   */
-  default <VALUE> AtomicStampedReferenceAssert<VALUE> thenAssert(AtomicStampedReference<VALUE> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Throwable)
-   */
-  default AbstractThrowableAssert<?, ? extends Throwable> thenAssert(Throwable actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#thenThrownBy(ThrowableAssert.ThrowingCallable)
-   */
-  @CanIgnoreReturnValue
-  default AbstractThrowableAssert<?, ? extends Throwable> thenThrownBy(ThrowableAssert.ThrowingCallable shouldRaiseThrowable) {
-    return BDDAssertions.thenThrownBy(shouldRaiseThrowable);
-  }
-
-  /**
-   * @see BDDAssertions#thenThrownBy(ThrowableAssert.ThrowingCallable, String, Object...)
-   */
-  @CanIgnoreReturnValue
-  default AbstractThrowableAssert<?, ? extends Throwable> thenThrownBy(ThrowableAssert.ThrowingCallable shouldRaiseThrowable,
-                                                                       String description, Object... args) {
-    return BDDAssertions.thenThrownBy(shouldRaiseThrowable, description, args);
-  }
-
-  /**
-   * @see BDDAssertions#thenCode(ThrowableAssert.ThrowingCallable)
-   */
-  default AbstractThrowableAssert<?, ? extends Throwable> thenCode(ThrowableAssert.ThrowingCallable shouldRaiseOrNotThrowable) {
-    return BDDAssertions.thenCode(shouldRaiseOrNotThrowable);
-  }
-
-  /**
-   * @see BDDAssertions#thenObject(T)
-   */
-  default <T> ObjectAssert<T> thenObject(T actual) {
-    return BDDAssertions.thenObject(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(LocalDate)
-   */
-  default AbstractLocalDateAssert<?> thenAssert(LocalDate actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(LocalDateTime)
-   */
-  default AbstractLocalDateTimeAssert<?> thenAssert(LocalDateTime actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(ZonedDateTime)
-   */
-  default AbstractZonedDateTimeAssert<?> thenAssert(ZonedDateTime actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(LocalTime)
-   */
-  default AbstractLocalTimeAssert<?> thenAssert(LocalTime actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(OffsetTime)
-   */
-  default AbstractOffsetTimeAssert<?> thenAssert(OffsetTime actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Instant)
-   */
-  default AbstractInstantAssert<?> thenAssert(Instant actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(URI)
-   */
-  default AbstractUriAssert<?> thenAssert(URI actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(URL)
-   */
-  default AbstractUrlAssert<?> thenAssert(URL actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(OffsetDateTime)
-   */
-  default AbstractOffsetDateTimeAssert<?> thenAssert(OffsetDateTime actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(CompletableFuture)
-   */
-  default <RESULT> CompletableFutureAssert<RESULT> thenAssert(CompletableFuture<RESULT> future) {
-    return BDDAssertions.then(future);
-  }
-
-  /**
-   * @see BDDAssertions#then(CompletionStage)
-   */
-  default <RESULT> CompletableFutureAssert<RESULT> thenAssert(CompletionStage<RESULT> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(T)
-   */
-  default <T extends AssertDelegateTarget> T thenAssert(T assertion) {
-    return BDDAssertions.then(assertion);
-  }
-
-  /**
-   * @see BDDAssertions#then(AssertProvider)
-   */
-  default <T> T thenAssert(final AssertProvider<T> component) {
-    return component.assertThat();
-  }
-
-  /**
-   * @see BDDAssertions#then(Stream)
-   */
-  default <ELEMENT> ListAssert<ELEMENT> thenAssert(Stream<? extends ELEMENT> actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(DoubleStream)
-   */
-  default ListAssert<Double> thenAssert(DoubleStream actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(LongStream)
-   */
-  default ListAssert<Long> thenAssert(LongStream actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(IntStream)
-   */
-  default ListAssert<Integer> thenAssert(IntStream actual) {
-    return BDDAssertions.then(actual);
-  }
-
-  /**
-   * @see BDDAssertions#then(Spliterator)
-   */
-  default <ELEMENT> SpliteratorAssert<ELEMENT> thenAssert(Spliterator<ELEMENT> actual) {
-    return BDDAssertions.then(actual);
-  }
+    /**
+     * @see BDDAssertions#then(Predicate)
+     */
+    default <T> PredicateAssert<T> thenAssert(final Predicate<T> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(IntPredicate)
+     */
+    default IntPredicateAssert thenAssert(final IntPredicate actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(LongPredicate)
+     */
+    default LongPredicateAssert thenAssert(final LongPredicate actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(DoublePredicate)
+     */
+    default DoublePredicateAssert thenAssert(final DoublePredicate actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Optional)
+     */
+    default <VALUE> OptionalAssert<VALUE> thenAssert(final Optional<VALUE> optional) {
+        return BDDAssertions.then(optional);
+    }
+
+    /**
+     * @see BDDAssertions#then(OptionalInt)
+     */
+    default OptionalIntAssert thenAssert(final OptionalInt optional) {
+        return BDDAssertions.then(optional);
+    }
+
+    /**
+     * @see BDDAssertions#then(OptionalLong)
+     */
+    default OptionalLongAssert thenAssert(final OptionalLong optional) {
+        return BDDAssertions.then(optional);
+    }
+
+    /**
+     * @see BDDAssertions#then(OptionalDouble)
+     */
+    default OptionalDoubleAssert thenAssert(final OptionalDouble optional) {
+        return BDDAssertions.then(optional);
+    }
+
+    /**
+     * @see BDDAssertions#then(BigDecimal)
+     */
+    default AbstractBigDecimalAssert<?> thenAssert(final BigDecimal actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(BigInteger)
+     */
+    default AbstractBigIntegerAssert<?> thenAssert(final BigInteger actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(boolean)
+     */
+    default AbstractBooleanAssert<?> thenAssert(final boolean actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Boolean)
+     */
+    default AbstractBooleanAssert<?> thenAssert(final Boolean actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(boolean[])
+     */
+    default AbstractBooleanArrayAssert<?> thenAssert(final boolean[] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(byte)
+     */
+    default AbstractByteAssert<?> thenAssert(final byte actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Byte)
+     */
+    default AbstractByteAssert<?> thenAssert(final Byte actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(byte[])
+     */
+    default AbstractByteArrayAssert<?> thenAssert(final byte[] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(char)
+     */
+    default AbstractCharacterAssert<?> thenAssert(final char actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(char[])
+     */
+    default AbstractCharArrayAssert<?> thenAssert(final char[] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Character)
+     */
+    default AbstractCharacterAssert<?> thenAssert(final Character actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Class)
+     */
+    default ClassAssert thenAssert(final Class<?> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(T)
+     */
+    default <T extends Comparable<? super T>> AbstractComparableAssert<?, T> thenAssert(final T actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Iterable)
+     */
+    default <T> IterableAssert<T> thenAssert(final Iterable<? extends T> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Iterator)
+     */
+    default <T> IteratorAssert<T> thenAssert(final Iterator<? extends T> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Iterable, AssertFactory)
+     */
+    default <ACTUAL extends Iterable<? extends ELEMENT>, ELEMENT, ELEMENT_ASSERT extends AbstractAssert<ELEMENT_ASSERT, ELEMENT>>
+    FactoryBasedNavigableIterableAssert<?, ACTUAL, ELEMENT, ELEMENT_ASSERT> thenAssert(final Iterable<? extends ELEMENT> actual,
+                                                                                       final AssertFactory<ELEMENT, ELEMENT_ASSERT> assertFactory) {
+        return BDDAssertions.then(actual, assertFactory);
+    }
+
+    /**
+     * @see BDDAssertions#then(ACTUAL, Class)
+     */
+    default <ACTUAL extends Iterable<? extends ELEMENT>, ELEMENT, ELEMENT_ASSERT extends AbstractAssert<ELEMENT_ASSERT, ELEMENT>>
+    ClassBasedNavigableIterableAssert<?, ACTUAL, ELEMENT, ELEMENT_ASSERT> thenAssert(final ACTUAL actual,
+                                                                                     final Class<ELEMENT_ASSERT> assertClass) {
+        return BDDAssertions.then(actual, assertClass);
+    }
+
+    /**
+     * @see BDDAssertions#then(List, AssertFactory)
+     */
+    default <ACTUAL extends List<? extends ELEMENT>, ELEMENT, ELEMENT_ASSERT extends AbstractAssert<ELEMENT_ASSERT, ELEMENT>>
+    FactoryBasedNavigableListAssert<?, ACTUAL, ELEMENT, ELEMENT_ASSERT> thenAssert(final List<? extends ELEMENT> actual,
+                                                                                   final AssertFactory<ELEMENT, ELEMENT_ASSERT> assertFactory) {
+        return BDDAssertions.then(actual, assertFactory);
+    }
+
+    /**
+     * @see BDDAssertions#then(List, Class)
+     */
+    default <ELEMENT, ACTUAL extends List<? extends ELEMENT>, ELEMENT_ASSERT extends AbstractAssert<ELEMENT_ASSERT, ELEMENT>>
+    ClassBasedNavigableListAssert<?, ACTUAL, ELEMENT, ELEMENT_ASSERT> thenAssert(final List<? extends ELEMENT> actual,
+                                                                                 final Class<ELEMENT_ASSERT> assertClass) {
+        return BDDAssertions.then(actual, assertClass);
+    }
+
+    /**
+     * @see BDDAssertions#then(double)
+     */
+    default AbstractDoubleAssert<?> thenAssert(final double actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Double)
+     */
+    default AbstractDoubleAssert<?> thenAssert(final Double actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(double[])
+     */
+    default AbstractDoubleArrayAssert<?> thenAssert(final double[] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(File)
+     */
+    default AbstractFileAssert<?> thenAssert(final File actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Path)
+     */
+    default AbstractPathAssert<?> thenAssert(final Path actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Future)
+     */
+    default <RESULT> FutureAssert<RESULT> thenAssert(final Future<RESULT> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(InputStream)
+     */
+    default AbstractInputStreamAssert<?, ? extends InputStream> thenAssert(final InputStream actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(float)
+     */
+    default AbstractFloatAssert<?> thenAssert(final float actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Float)
+     */
+    default AbstractFloatAssert<?> thenAssert(final Float actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(float[])
+     */
+    default AbstractFloatArrayAssert<?> thenAssert(final float[] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(int)
+     */
+    default AbstractIntegerAssert<?> thenAssert(final int actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(int[])
+     */
+    default AbstractIntArrayAssert<?> thenAssert(final int[] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Integer)
+     */
+    default AbstractIntegerAssert<?> thenAssert(final Integer actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(List)
+     */
+    default <T> ListAssert<T> thenAssert(final List<? extends T> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(long)
+     */
+    default AbstractLongAssert<?> thenAssert(final long actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Long)
+     */
+    default AbstractLongAssert<?> thenAssert(final Long actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(long[])
+     */
+    default AbstractLongArrayAssert<?> thenAssert(final long[] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(T)
+     */
+    default <T> ObjectAssert<T> thenAssert(final T actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(T[])
+     */
+    default <T> ObjectArrayAssert<T> thenAssert(final T[] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Map)
+     */
+    default <K, V> MapAssert<K, V> thenAssert(final Map<K, V> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(short)
+     */
+    default AbstractShortAssert<?> thenAssert(final short actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Short)
+     */
+    default AbstractShortAssert<?> thenAssert(final Short actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(short[])
+     */
+    default AbstractShortArrayAssert<?> thenAssert(final short[] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(CharSequence)
+     */
+    default AbstractCharSequenceAssert<?, ? extends CharSequence> thenAssert(final CharSequence actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(StringBuilder)
+     */
+    default AbstractCharSequenceAssert<?, ? extends CharSequence> thenAssert(final StringBuilder actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(StringBuffer)
+     */
+    default AbstractCharSequenceAssert<?, ? extends CharSequence> thenAssert(final StringBuffer actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(String)
+     */
+    default AbstractStringAssert<?> thenAssert(final String actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Date)
+     */
+    default AbstractDateAssert<?> thenAssert(final Date actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(AtomicBoolean)
+     */
+    default AtomicBooleanAssert thenAssert(final AtomicBoolean actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(AtomicInteger)
+     */
+    default AtomicIntegerAssert thenAssert(final AtomicInteger actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(AtomicIntegerArray)
+     */
+    default AtomicIntegerArrayAssert thenAssert(final AtomicIntegerArray actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(AtomicIntegerFieldUpdater)
+     */
+    default <OBJECT> AtomicIntegerFieldUpdaterAssert<OBJECT> thenAssert(final AtomicIntegerFieldUpdater<OBJECT> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(AtomicLong)
+     */
+    default AtomicLongAssert thenAssert(final AtomicLong actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(AtomicLongArray)
+     */
+    default AtomicLongArrayAssert thenAssert(final AtomicLongArray actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(AtomicLongFieldUpdater)
+     */
+    default <OBJECT> AtomicLongFieldUpdaterAssert<OBJECT> thenAssert(final AtomicLongFieldUpdater<OBJECT> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(AtomicReference)
+     */
+    default <VALUE> AtomicReferenceAssert<VALUE> thenAssert(final AtomicReference<VALUE> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(AtomicReferenceArray)
+     */
+    default <ELEMENT> AtomicReferenceArrayAssert<ELEMENT> thenAssert(final AtomicReferenceArray<ELEMENT> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(AtomicReferenceFieldUpdater)
+     */
+    default <FIELD, OBJECT> AtomicReferenceFieldUpdaterAssert<FIELD, OBJECT> thenAssert(final AtomicReferenceFieldUpdater<OBJECT, FIELD> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(AtomicMarkableReference)
+     */
+    default <VALUE> AtomicMarkableReferenceAssert<VALUE> thenAssert(final AtomicMarkableReference<VALUE> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(AtomicStampedReference)
+     */
+    default <VALUE> AtomicStampedReferenceAssert<VALUE> thenAssert(final AtomicStampedReference<VALUE> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Throwable)
+     */
+    default AbstractThrowableAssert<?, ? extends Throwable> thenAssert(final Throwable actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#thenThrownBy(ThrowableAssert.ThrowingCallable)
+     */
+    @CanIgnoreReturnValue
+    default AbstractThrowableAssert<?, ? extends Throwable> thenThrownBy(final ThrowableAssert.ThrowingCallable shouldRaiseThrowable) {
+        return BDDAssertions.thenThrownBy(shouldRaiseThrowable);
+    }
+
+    /**
+     * @see BDDAssertions#thenThrownBy(ThrowableAssert.ThrowingCallable, String, Object...)
+     */
+    @CanIgnoreReturnValue
+    default AbstractThrowableAssert<?, ? extends Throwable> thenThrownBy(final ThrowableAssert.ThrowingCallable shouldRaiseThrowable,
+                                                                         final String description, final Object... args) {
+        return BDDAssertions.thenThrownBy(shouldRaiseThrowable, description, args);
+    }
+
+    /**
+     * @see BDDAssertions#thenCode(ThrowableAssert.ThrowingCallable)
+     */
+    default AbstractThrowableAssert<?, ? extends Throwable> thenCode(final ThrowableAssert.ThrowingCallable shouldRaiseOrNotThrowable) {
+        return BDDAssertions.thenCode(shouldRaiseOrNotThrowable);
+    }
+
+    /**
+     * @see BDDAssertions#thenObject(T)
+     */
+    default <T> ObjectAssert<T> thenObject(final T actual) {
+        return BDDAssertions.thenObject(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(LocalDate)
+     */
+    default AbstractLocalDateAssert<?> thenAssert(final LocalDate actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(LocalDateTime)
+     */
+    default AbstractLocalDateTimeAssert<?> thenAssert(final LocalDateTime actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(ZonedDateTime)
+     */
+    default AbstractZonedDateTimeAssert<?> thenAssert(final ZonedDateTime actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(LocalTime)
+     */
+    default AbstractLocalTimeAssert<?> thenAssert(final LocalTime actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(OffsetTime)
+     */
+    default AbstractOffsetTimeAssert<?> thenAssert(final OffsetTime actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Instant)
+     */
+    default AbstractInstantAssert<?> thenAssert(final Instant actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(URI)
+     */
+    default AbstractUriAssert<?> thenAssert(final URI actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(URL)
+     */
+    default AbstractUrlAssert<?> thenAssert(final URL actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(OffsetDateTime)
+     */
+    default AbstractOffsetDateTimeAssert<?> thenAssert(final OffsetDateTime actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(CompletableFuture)
+     */
+    default <RESULT> CompletableFutureAssert<RESULT> thenAssert(final CompletableFuture<RESULT> future) {
+        return BDDAssertions.then(future);
+    }
+
+    /**
+     * @see BDDAssertions#then(CompletionStage)
+     */
+    default <RESULT> CompletableFutureAssert<RESULT> thenAssert(final CompletionStage<RESULT> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(T)
+     */
+    default <T extends AssertDelegateTarget> T thenAssert(final T assertion) {
+        return BDDAssertions.then(assertion);
+    }
+
+    /**
+     * @see BDDAssertions#then(AssertProvider)
+     */
+    default <T> T thenAssert(final AssertProvider<T> component) {
+        return component.assertThat();
+    }
+
+    /**
+     * @see BDDAssertions#then(Stream)
+     */
+    default <ELEMENT> ListAssert<ELEMENT> thenAssert(final Stream<? extends ELEMENT> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(DoubleStream)
+     */
+    default ListAssert<Double> thenAssert(final DoubleStream actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(LongStream)
+     */
+    default ListAssert<Long> thenAssert(final LongStream actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(IntStream)
+     */
+    default ListAssert<Integer> thenAssert(final IntStream actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Spliterator)
+     */
+    default <ELEMENT> SpliteratorAssert<ELEMENT> thenAssert(final Spliterator<ELEMENT> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Duration)
+     */
+    default AbstractDurationAssert<?> thenAssert(final Duration actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#thenExceptionOfType(Class)
+     */
+    default <T extends Throwable> ThrowableTypeAssert<T> thenExceptionOfType(final Class<? extends T> exceptionType) {
+        return BDDAssertions.thenExceptionOfType(exceptionType);
+    }
+
+    /**
+     * @see BDDAssertions#thenNullPointerException()
+     */
+    default ThrowableTypeAssert<NullPointerException> thenNullPointerException() {
+        return BDDAssertions.thenNullPointerException();
+    }
+
+    /**
+     * @see BDDAssertions#thenIllegalArgumentException()
+     */
+    default ThrowableTypeAssert<IllegalArgumentException> thenIllegalArgumentException() {
+        return BDDAssertions.thenIllegalArgumentException();
+    }
+
+    /**
+     * @see BDDAssertions#thenIOException()
+     */
+    default ThrowableTypeAssert<IOException> thenIOException() {
+        return BDDAssertions.thenIOException();
+    }
+
+    /**
+     * @see BDDAssertions#thenIllegalStateException()
+     */
+    default ThrowableTypeAssert<IllegalStateException> thenIllegalStateException() {
+        return BDDAssertions.thenIllegalStateException();
+    }
+
 
 }
