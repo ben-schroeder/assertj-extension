@@ -4,7 +4,7 @@
 
   <groupId>eu.benschroeder</groupId>
   <artifactId>assertj-extension</artifactId>
-  <version>0.1-SNAPSHOT</version>
+  <version>3.14.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>assertj-extension</name>
@@ -55,10 +55,23 @@
       <artifactId>assertj-core</artifactId>
       <version>${assertj.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.5.2</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
-    <plugins></plugins>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.1</version>
+      </plugin>
+    </plugins>
   </build>
 
   <profiles>
