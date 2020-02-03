@@ -1,6 +1,7 @@
 package eu.benschroeder.assertj;
 
 import org.assertj.core.api.BDDAssertions;
+import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.Test;
 
 public class WithBDDAssertionsTest implements WithAssertions {

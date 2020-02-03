@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/ben-schroeder/assertj-extension)](https://raw.githubusercontent.com/ben-schroeder/assertj-extension/develop/LICENSE)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/eu.benschroeder/assertj-extension/badge.svg)](https://maven-badges.herokuapp.com/maven-central/eu.benschroeder/assertj-extension)
 
-Extension to use assertj without static imports. 
+Convenience Extension to use assertj without static imports. 
 
 Inspired by https://blog.javabien.net/2014/04/23/what-if-assertj-used-java-8/ 
 
