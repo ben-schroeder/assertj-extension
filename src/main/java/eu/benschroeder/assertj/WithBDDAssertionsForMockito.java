@@ -65,6 +65,7 @@ import org.assertj.core.api.IntPredicateAssert;
 import org.assertj.core.api.IterableAssert;
 import org.assertj.core.api.IteratorAssert;
 import org.assertj.core.api.ListAssert;
+import org.assertj.core.api.LongAdderAssert;
 import org.assertj.core.api.LongPredicateAssert;
 import org.assertj.core.api.MapAssert;
 import org.assertj.core.api.ObjectArrayAssert;
@@ -119,6 +120,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.atomic.AtomicStampedReference;
+import java.util.concurrent.atomic.LongAdder;
 import java.util.function.DoublePredicate;
 import java.util.function.IntPredicate;
 import java.util.function.LongPredicate;
@@ -555,6 +557,13 @@ public interface WithBDDAssertionsForMockito {
      * @see BDDAssertions#then(AtomicIntegerFieldUpdater)
      */
     default <OBJECT> AtomicIntegerFieldUpdaterAssert<OBJECT> thenAssert(final AtomicIntegerFieldUpdater<OBJECT> actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(LongAdder)
+     */
+    default LongAdderAssert thenAssert(final LongAdder actual) {
         return BDDAssertions.then(actual);
     }
 
