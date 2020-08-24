@@ -4,7 +4,7 @@ import org.assertj.core.api.BDDAssertions;
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.Test;
 
-public class WithBDDAssertionsForMockitoTest implements WithAssertions {
+class WithBDDAssertionsForMockitoTest implements WithAssertions {
 
     @Test
     void testMethodCountMatches() {

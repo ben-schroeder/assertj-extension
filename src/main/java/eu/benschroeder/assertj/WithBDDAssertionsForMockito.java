@@ -30,6 +30,7 @@ import org.assertj.core.api.AbstractLongAssert;
 import org.assertj.core.api.AbstractOffsetDateTimeAssert;
 import org.assertj.core.api.AbstractOffsetTimeAssert;
 import org.assertj.core.api.AbstractPathAssert;
+import org.assertj.core.api.AbstractPeriodAssert;
 import org.assertj.core.api.AbstractShortArrayAssert;
 import org.assertj.core.api.AbstractShortAssert;
 import org.assertj.core.api.AbstractStringAssert;
@@ -53,21 +54,30 @@ import org.assertj.core.api.AtomicReferenceAssert;
 import org.assertj.core.api.AtomicReferenceFieldUpdaterAssert;
 import org.assertj.core.api.AtomicStampedReferenceAssert;
 import org.assertj.core.api.BDDAssertions;
+import org.assertj.core.api.Boolean2DArrayAssert;
+import org.assertj.core.api.Byte2DArrayAssert;
+import org.assertj.core.api.Char2DArrayAssert;
 import org.assertj.core.api.ClassAssert;
 import org.assertj.core.api.ClassBasedNavigableIterableAssert;
 import org.assertj.core.api.ClassBasedNavigableListAssert;
 import org.assertj.core.api.CompletableFutureAssert;
+import org.assertj.core.api.Double2DArrayAssert;
 import org.assertj.core.api.DoublePredicateAssert;
 import org.assertj.core.api.FactoryBasedNavigableIterableAssert;
 import org.assertj.core.api.FactoryBasedNavigableListAssert;
+import org.assertj.core.api.Float2DArrayAssert;
 import org.assertj.core.api.FutureAssert;
+import org.assertj.core.api.Int2DArrayAssert;
 import org.assertj.core.api.IntPredicateAssert;
 import org.assertj.core.api.IterableAssert;
 import org.assertj.core.api.IteratorAssert;
 import org.assertj.core.api.ListAssert;
+import org.assertj.core.api.Long2DArrayAssert;
 import org.assertj.core.api.LongAdderAssert;
 import org.assertj.core.api.LongPredicateAssert;
 import org.assertj.core.api.MapAssert;
+import org.assertj.core.api.NotThrownAssert;
+import org.assertj.core.api.Object2DArrayAssert;
 import org.assertj.core.api.ObjectArrayAssert;
 import org.assertj.core.api.ObjectAssert;
 import org.assertj.core.api.OptionalAssert;
@@ -75,6 +85,7 @@ import org.assertj.core.api.OptionalDoubleAssert;
 import org.assertj.core.api.OptionalIntAssert;
 import org.assertj.core.api.OptionalLongAssert;
 import org.assertj.core.api.PredicateAssert;
+import org.assertj.core.api.Short2DArrayAssert;
 import org.assertj.core.api.SpliteratorAssert;
 import org.assertj.core.api.ThrowableAssert;
 import org.assertj.core.api.ThrowableTypeAssert;
@@ -95,6 +106,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.OffsetTime;
+import java.time.Period;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Iterator;
@@ -231,6 +243,13 @@ public interface WithBDDAssertionsForMockito {
     }
 
     /**
+     * @see BDDAssertions#then(boolean[][])
+     */
+    default Boolean2DArrayAssert thenAssert(final boolean[][] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
      * @see BDDAssertions#then(byte)
      */
     default AbstractByteAssert<?> thenAssert(final byte actual) {
@@ -252,6 +271,13 @@ public interface WithBDDAssertionsForMockito {
     }
 
     /**
+     * @see BDDAssertions#then(byte[][])
+     */
+    default Byte2DArrayAssert thenAssert(final byte[][] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
      * @see BDDAssertions#then(char)
      */
     default AbstractCharacterAssert<?> thenAssert(final char actual) {
@@ -262,6 +288,13 @@ public interface WithBDDAssertionsForMockito {
      * @see BDDAssertions#then(char[])
      */
     default AbstractCharArrayAssert<?> thenAssert(final char[] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(char[][])
+     */
+    default Char2DArrayAssert thenAssert(final char[][] actual) {
         return BDDAssertions.then(actual);
     }
 
@@ -358,6 +391,13 @@ public interface WithBDDAssertionsForMockito {
     }
 
     /**
+     * @see BDDAssertions#then(double[][])
+     */
+    default Double2DArrayAssert thenAssert(final double[][] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
      * @see BDDAssertions#then(File)
      */
     default AbstractFileAssert<?> thenAssert(final File actual) {
@@ -407,6 +447,13 @@ public interface WithBDDAssertionsForMockito {
     }
 
     /**
+     * @see BDDAssertions#then(float[][])
+     */
+    default Float2DArrayAssert thenAssert(final float[][] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
      * @see BDDAssertions#then(int)
      */
     default AbstractIntegerAssert<?> thenAssert(final int actual) {
@@ -417,6 +464,13 @@ public interface WithBDDAssertionsForMockito {
      * @see BDDAssertions#then(int[])
      */
     default AbstractIntArrayAssert<?> thenAssert(final int[] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(int[][])
+     */
+    default Int2DArrayAssert thenAssert(final int[][] actual) {
         return BDDAssertions.then(actual);
     }
 
@@ -456,6 +510,13 @@ public interface WithBDDAssertionsForMockito {
     }
 
     /**
+     * @see BDDAssertions#then(long[][])
+     */
+    default Long2DArrayAssert thenAssert(final long[][] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
      * @see BDDAssertions#then(T)
      */
     default <T> ObjectAssert<T> thenAssert(final T actual) {
@@ -466,6 +527,13 @@ public interface WithBDDAssertionsForMockito {
      * @see BDDAssertions#then(T[])
      */
     default <T> ObjectArrayAssert<T> thenAssert(final T[] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(T[][])
+     */
+    default <T> Object2DArrayAssert<T> thenAssert(final T[][] actual) {
         return BDDAssertions.then(actual);
     }
 
@@ -494,6 +562,13 @@ public interface WithBDDAssertionsForMockito {
      * @see BDDAssertions#then(short[])
      */
     default AbstractShortArrayAssert<?> thenAssert(final short[] actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(short[][])
+     */
+    default Short2DArrayAssert thenAssert(final short[][] actual) {
         return BDDAssertions.then(actual);
     }
 
@@ -704,6 +779,20 @@ public interface WithBDDAssertionsForMockito {
     }
 
     /**
+     * @see BDDAssertions#then(Duration)
+     */
+    default AbstractDurationAssert<?> thenAssert(final Duration actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Period)
+     */
+    default AbstractPeriodAssert<?> thenAssert(final Period actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
      * @see BDDAssertions#then(URI)
      */
     default AbstractUriAssert<?> thenAssert(final URI actual) {
@@ -788,10 +877,10 @@ public interface WithBDDAssertionsForMockito {
     }
 
     /**
-     * @see BDDAssertions#then(Duration)
+     * @see BDDAssertions#thenNoException()
      */
-    default AbstractDurationAssert<?> thenAssert(final Duration actual) {
-        return BDDAssertions.then(actual);
+    default NotThrownAssert thenNoException() {
+        return BDDAssertions.thenNoException();
     }
 
     /**
