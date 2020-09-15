@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>assertj-extension</artifactId>
-    <version>3.17.1-SNAPSHOT</version>
+    <version>3.17.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>assertj-extension</name>
@@ -26,7 +26,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <assertj.version>3.17.1</assertj.version>
+        <assertj.version>3.17.2</assertj.version>
     </properties>
 
     <dependencies>
