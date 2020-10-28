@@ -10,7 +10,7 @@ env:
 
 cache:
   directories:
-  - "$HOME/.m2/repository"
+  - "/home/travis/.m2/repository"
 
 jobs:
   include:
@@ -49,4 +49,4 @@ jobs:
       -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg -Dgpg.secretKeyring=$TRAVIS_BUILD_DIR/secring.gpg
       -Dgpg.passphrase=$PASSPHRASE
 
-before_cache: rm -rf $HOME/.m2/repository/eu/benschroeder/assertj-extension
+before_cache: rm -rf /home/travis/.m2/repository/eu/benschroeder/assertj-extension
