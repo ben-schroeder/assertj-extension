@@ -10,7 +10,7 @@ env:
 
 cache:
   directories:
-  - "$HOME/.m2"
+  - "/home/travis/.m2/repository"
 
 jobs:
   include:
@@ -19,7 +19,7 @@ jobs:
     before_install:
     - mvn clean dependency:go-offline --settings .maven.xml
     install:
-    - mvn install --settings .maven.xml
+    - mvn verify --settings .maven.xml
   - stage: build AND use tag version AND deploy release
     if: tag IS present
     before_script:
@@ -48,3 +48,5 @@ jobs:
     - mvn deploy --settings .maven.xml -Prelease -Dgpg.executable=gpg2 -Dgpg.keyname=E137DC17A85F039B
       -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg -Dgpg.secretKeyring=$TRAVIS_BUILD_DIR/secring.gpg
       -Dgpg.passphrase=$PASSPHRASE
+
+before_cache: rm -rf /home/travis/.m2/repository/eu/benschroeder/assertj-extension
