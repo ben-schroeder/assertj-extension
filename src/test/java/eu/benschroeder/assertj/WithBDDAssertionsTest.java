@@ -6,10 +6,12 @@ import org.junit.jupiter.api.Test;
 
 class WithBDDAssertionsTest implements WithAssertions {
 
+    private static final int NUMBER_OF_METHODS_FROM_ASSERTIONS = 74;
+
     @Test
     void testMethodCountMatches() {
 
-        assertThat(WithBDDAssertions.class.getDeclaredMethods().length).isEqualTo(BDDAssertions.class.getDeclaredMethods().length);
+        assertThat(WithBDDAssertions.class.getDeclaredMethods().length).isEqualTo(BDDAssertions.class.getDeclaredMethods().length - NUMBER_OF_METHODS_FROM_ASSERTIONS);
 
     }
 
