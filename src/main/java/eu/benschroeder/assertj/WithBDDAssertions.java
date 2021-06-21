@@ -133,6 +133,7 @@ import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.atomic.AtomicStampedReference;
 import java.util.concurrent.atomic.LongAdder;
+import java.util.function.Consumer;
 import java.util.function.DoublePredicate;
 import java.util.function.IntPredicate;
 import java.util.function.LongPredicate;
@@ -473,7 +474,7 @@ public interface WithBDDAssertions {
     default Int2DArrayAssert then(final int[][] actual) {
         return BDDAssertions.then(actual);
     }
-    
+
     /**
      * @see BDDAssertions#then(Integer)
      */
@@ -734,6 +735,13 @@ public interface WithBDDAssertions {
      */
     default <T> ObjectAssert<T> thenObject(final T actual) {
         return BDDAssertions.thenObject(actual);
+    }
+
+    /**
+     * @see BDDAssertions#thenWith(Object, Consumer)
+     */
+    default <T> ObjectAssert<T> thenWith(final T actual, final Consumer<T> requirements) {
+        return BDDAssertions.thenWith(actual, requirements);
     }
 
     /**
