@@ -31,6 +31,9 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
 
+      - name: Tidy pom.xml
+        run: mvn -B tidy:pom --file pom.xml
+
       - name: Run mvn deploy
         run: mvn -B clean deploy --file pom.xml -Prelease
         env:
