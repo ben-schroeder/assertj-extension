@@ -10,6 +10,7 @@ import org.assertj.core.api.AbstractByteAssert;
 import org.assertj.core.api.AbstractCharArrayAssert;
 import org.assertj.core.api.AbstractCharSequenceAssert;
 import org.assertj.core.api.AbstractCharacterAssert;
+import org.assertj.core.api.AbstractCollectionAssert;
 import org.assertj.core.api.AbstractComparableAssert;
 import org.assertj.core.api.AbstractDateAssert;
 import org.assertj.core.api.AbstractDoubleArrayAssert;
@@ -108,6 +109,7 @@ import java.time.OffsetDateTime;
 import java.time.OffsetTime;
 import java.time.Period;
 import java.time.ZonedDateTime;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -479,6 +481,13 @@ public interface WithBDDAssertionsForMockito {
      * @see BDDAssertions#then(Integer)
      */
     default AbstractIntegerAssert<?> thenAssert(final Integer actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(Collection)
+     */
+    default <E> AbstractCollectionAssert<?, Collection<? extends E>, E, ObjectAssert<E>> thenAssert(final Collection<? extends E> actual) {
         return BDDAssertions.then(actual);
     }
 
