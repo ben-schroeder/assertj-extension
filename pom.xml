@@ -5,11 +5,11 @@
     <parent>
         <groupId>eu.benschroeder</groupId>
         <artifactId>oss-parent</artifactId>
-        <version>4</version>
+        <version>5</version>
     </parent>
 
     <artifactId>assertj-extension</artifactId>
-    <version>3.21.0-SNAPSHOT</version>
+    <version>3.22.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>assertj-extension</name>
@@ -26,7 +26,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <assertj.version>3.21.0</assertj.version>
+        <assertj.version>3.22.0</assertj.version>
         <junit-jupiter.version>5.8.2</junit-jupiter.version>
     </properties>
 

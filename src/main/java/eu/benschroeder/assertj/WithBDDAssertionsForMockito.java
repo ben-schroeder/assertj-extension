@@ -747,9 +747,9 @@ public interface WithBDDAssertionsForMockito {
     }
 
     /**
-     * @see BDDAssertions#thenWith(Object, Consumer)
+     * @see BDDAssertions#thenWith(Object, Consumer...)
      */
-    default <T> ObjectAssert<T> thenWith(final T actual, final Consumer<T> requirements) {
+    default <T> ObjectAssert<T> thenWith(final T actual, final Consumer<T>... requirements) {
         return BDDAssertions.thenWith(actual, requirements);
     }
 
