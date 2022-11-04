@@ -36,6 +36,7 @@ import org.assertj.core.api.AbstractShortArrayAssert;
 import org.assertj.core.api.AbstractShortAssert;
 import org.assertj.core.api.AbstractStringAssert;
 import org.assertj.core.api.AbstractThrowableAssert;
+import org.assertj.core.api.AbstractUniversalComparableAssert;
 import org.assertj.core.api.AbstractUriAssert;
 import org.assertj.core.api.AbstractUrlAssert;
 import org.assertj.core.api.AbstractZonedDateTimeAssert;
@@ -77,6 +78,7 @@ import org.assertj.core.api.Long2DArrayAssert;
 import org.assertj.core.api.LongAdderAssert;
 import org.assertj.core.api.LongPredicateAssert;
 import org.assertj.core.api.MapAssert;
+import org.assertj.core.api.MatcherAssert;
 import org.assertj.core.api.NotThrownAssert;
 import org.assertj.core.api.Object2DArrayAssert;
 import org.assertj.core.api.ObjectArrayAssert;
@@ -140,6 +142,7 @@ import java.util.function.DoublePredicate;
 import java.util.function.IntPredicate;
 import java.util.function.LongPredicate;
 import java.util.function.Predicate;
+import java.util.regex.Matcher;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
@@ -159,6 +162,13 @@ public interface WithBDDAssertions {
      */
     default <T> PredicateAssert<T> then(final Predicate<T> actual) {
         return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#thenPredicate(Predicate)
+     */
+    default <T> PredicateAssert<T> thenPredicate(final Predicate<T> actual) {
+        return BDDAssertions.thenPredicate(actual);
     }
 
     /**
@@ -201,6 +211,13 @@ public interface WithBDDAssertions {
      */
     default OptionalLongAssert then(final OptionalLong optional) {
         return BDDAssertions.then(optional);
+    }
+
+    /**
+     * @see BDDAssertions#then(Matcher)
+     */
+    default MatcherAssert then(final Matcher actual) {
+        return BDDAssertions.then(actual);
     }
 
     /**
@@ -323,6 +340,13 @@ public interface WithBDDAssertions {
     }
 
     /**
+     * @see BDDAssertions#thenComparable(Comparable)
+     */
+    default <T> AbstractUniversalComparableAssert<?, T> thenComparable(final Comparable<T> actual) {
+        return BDDAssertions.thenComparable(actual);
+    }
+
+    /**
      * @see BDDAssertions#then(Iterable)
      */
     default <T> IterableAssert<T> then(final Iterable<? extends T> actual) {
@@ -330,10 +354,24 @@ public interface WithBDDAssertions {
     }
 
     /**
+     * @see BDDAssertions#thenIterable(Iterable)
+     */
+    default <ELEMENT> IterableAssert<ELEMENT> thenIterable(final Iterable<? extends ELEMENT> actual) {
+        return BDDAssertions.thenIterable(actual);
+    }
+
+    /**
      * @see BDDAssertions#then(Iterator)
      */
     default <T> IteratorAssert<T> then(final Iterator<? extends T> actual) {
         return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#thenIterator(Iterator)
+     */
+    default <ELEMENT> IteratorAssert<ELEMENT> thenIterator(final Iterator<? extends ELEMENT> actual) {
+        return BDDAssertions.thenIterator(actual);
     }
 
     /**
@@ -415,6 +453,13 @@ public interface WithBDDAssertions {
     }
 
     /**
+     * @see BDDAssertions#thenPath(Path)
+     */
+    default AbstractPathAssert<?> thenPath(final Path actual) {
+        return BDDAssertions.thenPath(actual);
+    }
+
+    /**
      * @see BDDAssertions#then(Future)
      */
     default <RESULT> FutureAssert<RESULT> then(final Future<RESULT> actual) {
@@ -492,10 +537,24 @@ public interface WithBDDAssertions {
     }
 
     /**
+     * @see BDDAssertions#thenCollection(Collection)
+     */
+    default <E> AbstractCollectionAssert<?, Collection<? extends E>, E, ObjectAssert<E>> thenCollection(final Collection<? extends E> actual) {
+        return BDDAssertions.thenCollection(actual);
+    }
+
+    /**
      * @see BDDAssertions#then(List)
      */
     default <T> ListAssert<T> then(final List<? extends T> actual) {
         return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#thenList(List)
+     */
+    default <ELEMENT> ListAssert<ELEMENT> thenList(final List<? extends ELEMENT> actual) {
+        return BDDAssertions.thenList(actual);
     }
 
     /**
@@ -749,7 +808,7 @@ public interface WithBDDAssertions {
     /**
      * @see BDDAssertions#thenWith(Object, Consumer...)
      */
-    default <T> ObjectAssert<T> thenWith(final T actual, Consumer<T>... requirements) {
+    default <T> ObjectAssert<T> thenWith(final T actual, final Consumer<T>... requirements) {
         return BDDAssertions.thenWith(actual, requirements);
     }
 
@@ -866,6 +925,13 @@ public interface WithBDDAssertions {
     }
 
     /**
+     * @see BDDAssertions#thenStream(Stream)
+     */
+    default <ELEMENT> ListAssert<ELEMENT> thenStream(final Stream<? extends ELEMENT> actual) {
+        return BDDAssertions.thenStream(actual);
+    }
+
+    /**
      * @see BDDAssertions#then(DoubleStream)
      */
     default ListAssert<Double> then(final DoubleStream actual) {
@@ -933,6 +999,34 @@ public interface WithBDDAssertions {
      */
     default ThrowableTypeAssert<IllegalStateException> thenIllegalStateException() {
         return BDDAssertions.thenIllegalStateException();
+    }
+
+    /**
+     * @see BDDAssertions#thenException()
+     */
+    default ThrowableTypeAssert<Exception> thenException() {
+        return BDDAssertions.thenException();
+    }
+
+    /**
+     * @see BDDAssertions#thenIndexOutOfBoundsException()
+     */
+    default ThrowableTypeAssert<IndexOutOfBoundsException> thenIndexOutOfBoundsException() {
+        return BDDAssertions.thenIndexOutOfBoundsException();
+    }
+
+    /**
+     * @see BDDAssertions#thenReflectiveOperationException()
+     */
+    default ThrowableTypeAssert<ReflectiveOperationException> thenReflectiveOperationException() {
+        return BDDAssertions.thenReflectiveOperationException();
+    }
+
+    /**
+     * @see BDDAssertions#thenRuntimeException()
+     */
+    default ThrowableTypeAssert<RuntimeException> thenRuntimeException() {
+        return BDDAssertions.thenRuntimeException();
     }
 
 }
