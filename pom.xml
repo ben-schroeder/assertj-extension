@@ -5,7 +5,7 @@
     <parent>
         <groupId>eu.benschroeder</groupId>
         <artifactId>oss-parent</artifactId>
-        <version>5</version>
+        <version>6</version>
     </parent>
 
     <artifactId>assertj-extension</artifactId>
