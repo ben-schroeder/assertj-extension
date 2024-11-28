@@ -39,6 +39,7 @@ import org.assertj.core.api.AbstractThrowableAssert;
 import org.assertj.core.api.AbstractUniversalComparableAssert;
 import org.assertj.core.api.AbstractUriAssert;
 import org.assertj.core.api.AbstractUrlAssert;
+import org.assertj.core.api.AbstractYearMonthAssert;
 import org.assertj.core.api.AbstractZonedDateTimeAssert;
 import org.assertj.core.api.AssertDelegateTarget;
 import org.assertj.core.api.AssertFactory;
@@ -90,6 +91,7 @@ import org.assertj.core.api.OptionalLongAssert;
 import org.assertj.core.api.PredicateAssert;
 import org.assertj.core.api.Short2DArrayAssert;
 import org.assertj.core.api.SpliteratorAssert;
+import org.assertj.core.api.TemporalAssert;
 import org.assertj.core.api.ThrowableAssert;
 import org.assertj.core.api.ThrowableTypeAssert;
 import org.assertj.core.util.CanIgnoreReturnValue;
@@ -110,7 +112,9 @@ import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.OffsetTime;
 import java.time.Period;
+import java.time.YearMonth;
 import java.time.ZonedDateTime;
+import java.time.temporal.Temporal;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
@@ -649,6 +653,13 @@ public interface WithBDDAssertions {
     }
 
     /**
+     * @see BDDAssertions#thenCharSequence(CharSequence)
+     */
+    default AbstractCharSequenceAssert<?, ? extends CharSequence> thenCharSequence(final CharSequence actual) {
+        return BDDAssertions.thenCharSequence(actual);
+    }
+
+    /**
      * @see BDDAssertions#then(StringBuilder)
      */
     default AbstractCharSequenceAssert<?, ? extends CharSequence> then(final StringBuilder actual) {
@@ -813,9 +824,23 @@ public interface WithBDDAssertions {
     }
 
     /**
+     * @see BDDAssertions#thenTemporal(Temporal) 
+     */
+    default TemporalAssert thenTemporal(Temporal actual) {
+        return BDDAssertions.thenTemporal(actual);
+    }
+
+    /**
      * @see BDDAssertions#then(LocalDate)
      */
     default AbstractLocalDateAssert<?> then(final LocalDate actual) {
+        return BDDAssertions.then(actual);
+    }
+
+    /**
+     * @see BDDAssertions#then(YearMonth)
+     */
+    default AbstractYearMonthAssert<?> then(final YearMonth actual) {
         return BDDAssertions.then(actual);
     }
 
