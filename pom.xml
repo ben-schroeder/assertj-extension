@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>assertj-extension</artifactId>
-    <version>3.27.3-SNAPSHOT</version>
+    <version>3.27.7-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>assertj-extension</name>
@@ -24,7 +24,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <assertj.version>3.27.3</assertj.version>
+        <assertj.version>3.27.7</assertj.version>
         <junit-jupiter.version>6.0.3</junit-jupiter.version>
     </properties>
 
