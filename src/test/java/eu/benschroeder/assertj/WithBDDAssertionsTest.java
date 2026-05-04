@@ -24,13 +24,13 @@ class WithBDDAssertionsTest implements WithAssertions {
                     .filter(method -> Objects.equals(method.getReturnType(), bddAssertionsMethod.getReturnType()))
                     .filter(method -> Arrays.equals(method.getParameterTypes(), bddAssertionsMethod.getParameterTypes()))
                     .findFirst();
-            if (!withBddAssertionsMethod.isPresent()) {
+            if (withBddAssertionsMethod.isEmpty()) {
                 final Optional<Method> withAssertionsMethod = Arrays.stream(withAssertionsMethods)
                         .filter(method -> Objects.equals(method.getName(), bddAssertionsMethod.getName()))
                         .filter(method -> Objects.equals(method.getReturnType(), bddAssertionsMethod.getReturnType()))
                         .filter(method -> Arrays.equals(method.getParameterTypes(), bddAssertionsMethod.getParameterTypes()))
                         .findFirst();
-                if (!withAssertionsMethod.isPresent()) {
+                if (withAssertionsMethod.isEmpty()) {
                     fail("Missing: " + bddAssertionsMethod.toString());
                 }
             }
