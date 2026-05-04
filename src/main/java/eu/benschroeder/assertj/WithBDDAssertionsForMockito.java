@@ -380,7 +380,9 @@ public interface WithBDDAssertionsForMockito {
 
     /**
      * @see BDDAssertions#then(Iterable, AssertFactory)
+     * @deprecated see BDDAssertions#then(Iterable, AssertFactory)
      */
+    @Deprecated
     default <ACTUAL extends Iterable<? extends ELEMENT>, ELEMENT, ELEMENT_ASSERT extends AbstractAssert<ELEMENT_ASSERT, ELEMENT>>
     FactoryBasedNavigableIterableAssert<?, ACTUAL, ELEMENT, ELEMENT_ASSERT> thenAssert(final Iterable<? extends ELEMENT> actual,
                                                                                        final AssertFactory<ELEMENT, ELEMENT_ASSERT> assertFactory) {
@@ -389,7 +391,9 @@ public interface WithBDDAssertionsForMockito {
 
     /**
      * @see BDDAssertions#then(ACTUAL, Class)
+     * @deprecated see BDDAssertions#then(Iterable, Class)
      */
+    @Deprecated
     default <ACTUAL extends Iterable<? extends ELEMENT>, ELEMENT, ELEMENT_ASSERT extends AbstractAssert<ELEMENT_ASSERT, ELEMENT>>
     ClassBasedNavigableIterableAssert<?, ACTUAL, ELEMENT, ELEMENT_ASSERT> thenAssert(final ACTUAL actual,
                                                                                      final Class<ELEMENT_ASSERT> assertClass) {
@@ -398,7 +402,9 @@ public interface WithBDDAssertionsForMockito {
 
     /**
      * @see BDDAssertions#then(List, AssertFactory)
+     * @deprecated see BDDAssertions#then(List, AssertFactory)
      */
+    @Deprecated
     default <ACTUAL extends List<? extends ELEMENT>, ELEMENT, ELEMENT_ASSERT extends AbstractAssert<ELEMENT_ASSERT, ELEMENT>>
     FactoryBasedNavigableListAssert<?, ACTUAL, ELEMENT, ELEMENT_ASSERT> thenAssert(final List<? extends ELEMENT> actual,
                                                                                    final AssertFactory<ELEMENT, ELEMENT_ASSERT> assertFactory) {
@@ -407,7 +413,9 @@ public interface WithBDDAssertionsForMockito {
 
     /**
      * @see BDDAssertions#then(List, Class)
+     * @deprecated see BDDAssertions#then(List, Class)
      */
+    @Deprecated
     default <ELEMENT, ACTUAL extends List<? extends ELEMENT>, ELEMENT_ASSERT extends AbstractAssert<ELEMENT_ASSERT, ELEMENT>>
     ClassBasedNavigableListAssert<?, ACTUAL, ELEMENT, ELEMENT_ASSERT> thenAssert(final List<? extends ELEMENT> actual,
                                                                                  final Class<ELEMENT_ASSERT> assertClass) {
